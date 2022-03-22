@@ -9,7 +9,8 @@ import { ApiService } from './services/api.service';
 export class AppComponent implements OnInit {
   title = 'My app';
   input: string = '';
-  list: string[] = []
+  list: string[] = [];
+  inputError: boolean = false;
 
   constructor(
     private api: ApiService,
@@ -22,10 +23,11 @@ export class AppComponent implements OnInit {
 
   saveList() {
     if (!this.input.match(/<.+?>/g)) {
+      this.inputError = false;
       this.list.push(this.input);
       this.api.saveList(this.list);
     } else {
-      alert("no html");
+      this.inputError = true;
     }
   }
 

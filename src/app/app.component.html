@@ -1,10 +1,16 @@
 <section>
-  <h1>{{title}}</h1>
-  <input [(ngModel)]="input" (change)="saveInput()" (keyup.enter)="saveList()" type="text" maxlength="140">
-  <button (click)="saveList()">Submit</button>
-  <ul>
-    <li *ngFor="let item of list; index as i">{{item}}
-      <button (click)="deleteItem(i)">X</button>
-    </li>
-  </ul>
+  <h1 color="accent">{{title}}</h1>
+  <mat-form-field class="form-field" appearance="fill">
+    <input matInput [(ngModel)]="input" (change)="saveInput()"
+    (keyup.enter)="saveList()" type="text" maxlength="140">
+    <mat-error *ngIf="inputError">You can not enter HTML tags</mat-error>
+  </mat-form-field>
+  <div *ngIf="inputError" class="input-error">You can not enter HTML tags </div>
+  
+  <button mat-stroked-button color="accent" (click)="saveList()">Submit</button>
+  <mat-list role="list">
+    <mat-list-item role="listitem" color="accent" *ngFor="let item of list; index as i">{{item}}
+      <button mat-icon-button (click)="deleteItem(i)"><mat-icon color="accent">delete</mat-icon></button>
+    </mat-list-item>
+  </mat-list>
 </section>
