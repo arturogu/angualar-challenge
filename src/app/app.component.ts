@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -10,22 +11,26 @@ export class AppComponent implements OnInit {
   input: string = '';
   list: string[] = []
 
+  constructor(
+    private api: ApiService,
+  ) {}
+
   ngOnInit() {
-    this.input = localStorage.getItem("input") || '';
-    this.list = JSON.parse(localStorage.getItem("list") || '[]');
+    this.input = this.api.getInput();
+    this.list = this.api.getList();
   }
 
   saveList() {
     if (!this.input.match(/<.+?>/g)) {
       this.list.push(this.input);
-      localStorage.setItem("list", JSON.stringify(this.list));
+      this.api.saveList(this.list);
     } else {
       alert("no html");
     }
   }
 
   saveInput() {
-    localStorage.setItem("input", this.input);
+    this.api.saveInput(this.input);
   }
 
   deleteItem(index:number) {
