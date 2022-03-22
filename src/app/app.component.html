@@ -1,0 +1,10 @@
+<section>
+  <h1>{{title}}</h1>
+  <input [(ngModel)]="input" (change)="saveInput()" (keyup.enter)="saveList()" type="text" maxlength="140">
+  <button (click)="saveList()">Submit</button>
+  <ul>
+    <li *ngFor="let item of list; index as i">{{item}}
+      <button (click)="deleteItem(i)">X</button>
+    </li>
+  </ul>
+</section>
