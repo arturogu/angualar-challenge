@@ -9,8 +9,8 @@
   
   <button mat-stroked-button color="accent" (click)="saveList()">Submit</button>
   <mat-list role="list">
-    <mat-list-item role="listitem" color="accent" *ngFor="let item of list; index as i">{{item}}
-      <button mat-icon-button (click)="deleteItem(i)"><mat-icon color="accent">delete</mat-icon></button>
+    <mat-list-item role="listitem" color="accent" *ngFor="let item of list; index as i">{{item.data}}
+      <button mat-icon-button (click)="deleteItem(i, item.id)"><mat-icon color="accent">delete</mat-icon></button>
     </mat-list-item>
   </mat-list>
 </section>

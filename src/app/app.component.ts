@@ -9,7 +9,7 @@ import { ApiService } from './services/api.service';
 export class AppComponent implements OnInit {
   title = 'My app';
   input: string = '';
-  list: string[] = [];
+  list: any[] = [];
   inputError: boolean = false;
 
   constructor(
@@ -17,15 +17,16 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.input = this.api.getInput();
-    this.list = this.api.getList();
+    this.api.getInput().then(val => { this.input = val });
+    this.api.getList().then(val => {this.list = val });
   }
 
   saveList() {
     if (!this.input.match(/<.+?>/g)) {
       this.inputError = false;
-      this.list.push(this.input);
-      this.api.saveList(this.list);
+      this.api.saveList(this.input).then( value => {
+        this.list.push({data: this.input, id: value});
+      });
     } else {
       this.inputError = true;
     }
@@ -35,9 +36,10 @@ export class AppComponent implements OnInit {
     this.api.saveInput(this.input);
   }
 
-  deleteItem(index:number) {
+  deleteItem(index:number, id:string) {
     this.list.splice(index, 1);
-    localStorage.setItem("list", JSON.stringify(this.list));
+    //localStorage.setItem("list", JSON.stringify(this.list));
+    this.api.deleteItem(id);
   }
 
   validate(text:String) {
