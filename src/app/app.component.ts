@@ -7,7 +7,7 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'My app';
+  title = 'My data list';
   input: string = '';
   list: any[] = [];
   inputError: boolean = false;
