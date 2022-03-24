@@ -6,3 +6,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-list-item-content {
     justify-content: space-between;
 }
+
+.mat-form-field.mat-focused .mat-form-field-ripple{
+    background-color: #fff;
+}

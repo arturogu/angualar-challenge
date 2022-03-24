@@ -1,5 +1,5 @@
 section {
-    width: 70ch;
+    max-width: 70ch;
     margin: 5% auto;
 }
 
@@ -17,4 +17,8 @@ section {
 .input-error {
     color: red;
     margin: 0 0 1em;
+}
+
+.mat-input-element {
+    caret-color: white;
 }
