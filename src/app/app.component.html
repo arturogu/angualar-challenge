@@ -1,13 +1,13 @@
 <section>
   <h1 color="accent">{{title}}</h1>
-  <mat-form-field class="form-field" appearance="fill">
+  <mat-form-field class="form-field" appearance="fill" color="white">
     <input matInput [(ngModel)]="input" (change)="saveInput()"
-    (keyup.enter)="saveList()" type="text" maxlength="140">
+    type="text" maxlength="140" >
     <mat-error *ngIf="inputError">You can not enter HTML tags</mat-error>
   </mat-form-field>
   <div *ngIf="inputError" class="input-error">You can not enter HTML tags </div>
   
-  <button mat-stroked-button color="accent" (click)="saveList()">Submit</button>
+  <button mat-stroked-button color="accent" (click)="saveList()" [disabled]="input === ''">Submit</button>
   <mat-list role="list">
     <mat-list-item role="listitem" color="accent" *ngFor="let item of list; index as i">{{item.data}}
       <button mat-icon-button (click)="deleteItem(i, item.id)"><mat-icon color="accent">delete</mat-icon></button>

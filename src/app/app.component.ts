@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
       this.inputError = false;
       this.api.saveList(this.input).then( value => {
         this.list.push({data: this.input, id: value});
+        this.input = '';
       });
     } else {
       this.inputError = true;
